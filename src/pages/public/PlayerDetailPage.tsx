@@ -44,7 +44,6 @@ const PlayerDetailPage: React.FC = () => {
         {/* Profile Card */}
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <div className="flex items-center gap-6">
-            {/* Avatar */}
             <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-blue-600 font-bold text-3xl">
                 {player.name.charAt(0).toUpperCase()}
@@ -81,7 +80,7 @@ const PlayerDetailPage: React.FC = () => {
                   to={`/teams/${player.teamId}`}
                   className="text-sm text-blue-600 hover:underline mt-2 inline-block"
                 >
-                  {player.teamName ?? `View Team`}
+                  {player.teamName ?? 'View Team'}
                 </Link>
               )}
             </div>
@@ -119,12 +118,14 @@ const PlayerDetailPage: React.FC = () => {
           </dl>
         </div>
 
-        {/* Stats */}
+        {/* Stats - explicitly type the value as number */}
         {player.stats && Object.keys(player.stats).length > 0 && (
           <div className="bg-white rounded-lg shadow p-6">
             <h2 className="text-lg font-semibold mb-4">Statistics</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {Object.entries(player.stats).map(([key, value]) => (
+              {(
+                Object.entries(player.stats) as Array<[string, number]>
+              ).map(([key, value]: [string, number]) => (
                 <div
                   key={key}
                   className="text-center bg-gray-50 rounded-lg p-4"
