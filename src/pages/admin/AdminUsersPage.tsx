@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Layout } from '@/components/common/Layout';
+import Layout from '@/components/common/Layout';
 import { queryDocs, Collections } from '@/lib/firestore';
 import { where, orderBy, limit } from 'firebase/firestore';
 import { Users, Search, ShieldCheck } from 'lucide-react';
