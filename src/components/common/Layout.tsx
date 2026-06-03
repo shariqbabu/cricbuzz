@@ -15,4 +15,6 @@ const Layout: React.FC<LayoutProps> = ({ children, className = '' }) => {
   );
 };
 
+// Both default and named export to support both import styles
+export { Layout };
 export default Layout;
