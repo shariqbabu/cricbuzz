@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Layout } from '@/components/common/Layout';
+import Layout from '@/components/common/Layout';
 import { Trophy, Radio, Users, TrendingUp, ArrowRight, Shield } from 'lucide-react';
 
 export default function HomePage() {
