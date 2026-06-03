@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout } from '@/components/common/Layout';
+import Layout from '@/components/common/Layout';
 import { useAuth } from '@/contexts/AuthContext';
 import { createDoc } from '@/lib/firestore';
 import { Shield, CheckCircle } from 'lucide-react';
