@@ -12,6 +12,30 @@ export interface Match {
   status?: 'scheduled' | 'live' | 'completed' | 'cancelled';
   tournamentId?: string | number;
   venue?: string;
+  events?: MatchEvent[];
+  lineups?: Lineup[];
+}
+
+export interface MatchEvent {
+  id: string | number;
+  type: 'goal' | 'yellow_card' | 'red_card' | 'substitution' | 'penalty';
+  minute: number;
+  teamId?: string | number;
+  playerId?: string | number;
+  playerName?: string;
+  description?: string;
+}
+
+export interface Lineup {
+  teamId: string | number;
+  teamName?: string;
+  players: Array<{
+    id: string | number;
+    name: string;
+    number?: number;
+    position?: string;
+    isStarter: boolean;
+  }>;
 }
 
 export interface Tournament {
@@ -27,6 +51,12 @@ export interface Tournament {
 const fetchMatches = async (): Promise<Match[]> => {
   const response = await fetch('/api/matches');
   if (!response.ok) throw new Error('Failed to fetch matches');
+  return response.json();
+};
+
+const fetchLiveMatches = async (): Promise<Match[]> => {
+  const response = await fetch('/api/matches?status=live');
+  if (!response.ok) throw new Error('Failed to fetch live matches');
   return response.json();
 };
 
@@ -52,6 +82,14 @@ export const useMatches = () => {
   return useQuery<Match[]>({
     queryKey: ['matches'],
     queryFn: fetchMatches,
+  });
+};
+
+export const useLiveMatches = () => {
+  return useQuery<Match[]>({
+    queryKey: ['matches', 'live'],
+    queryFn: fetchLiveMatches,
+    refetchInterval: 30_000, // Poll every 30 seconds
   });
 };
 
