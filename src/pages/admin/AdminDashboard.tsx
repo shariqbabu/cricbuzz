@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout } from '@/components/common/Layout';
+import Layout from '@/components/common/Layout';
 import { Users, Activity, Shield, Settings, ChevronRight, Trophy } from 'lucide-react';
 
 export default function AdminDashboard() {
